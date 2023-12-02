@@ -1,8 +1,8 @@
 export interface routeProps {
   route: string;
   label: string;
-  isActive: boolean;
-  onClick: () => void;
+  isActive?: boolean;
+  onClick?: () => void;
 }
 
 export interface buttonProps {
