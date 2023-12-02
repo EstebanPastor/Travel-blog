@@ -12,6 +12,7 @@ import Button from "../button/Button";
 import { navLinks } from "@/constants";
 import Link from "next/link";
 import Route from "../route/Route";
+import useMenuActive from "@/hooks/useMenuActive";
 
 const MobileMenu = () => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
@@ -49,15 +50,19 @@ const MobileMenu = () => {
               </div>
             </div>
             <ul className="flex items-center justify-center gap-10 flex-col mt-5 flex-1 py-6 border-b">
-              {navLinks.map((link, index) => (
-                <li key={index}>
-                  <Route
-                    route={link.route}
-                    label={link.label}
-                    onClick={() => setOpenMobileMenu(false)}
-                  />
-                </li>
-              ))}
+              {navLinks.map((link, index) => {
+                const isActive = useMenuActive(link.route);
+                return (
+                  <li key={index}>
+                    <Route
+                      route={link.route}
+                      label={link.label}
+                      isActive={isActive}
+                      onClick={() => setOpenMobileMenu(false)}
+                    />
+                  </li>
+                );
+              })}
             </ul>
             <div className="flex gap-5 text flex-1 flex-col py-5">
               <Button text="Log In" onClick={() => null} aria="Log in button" />
