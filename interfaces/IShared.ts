@@ -10,3 +10,7 @@ export interface buttonProps {
   aria: string;
   onClick: () => void;
 }
+
+export interface TagProps {
+  text: string[];
+}
