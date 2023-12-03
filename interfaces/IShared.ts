@@ -22,7 +22,7 @@ export interface searchParamsTypes {
   paragraph: string;
   featured: boolean;
   topPost: boolean;
-  tags: string;
+  tags: string[];
   authorImage: string;
   authorName: string;
   publishDate: string;
