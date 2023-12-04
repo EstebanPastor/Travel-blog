@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Overlay from "@/components/ui/overlay/Overlay";
 import Button from "@/components/ui/button/Button";
-
+import Map from "@/components/ui/map/Map";
 const Contact = () => {
   return (
     <div>
@@ -18,7 +18,7 @@ const Contact = () => {
       </h1>
     </div>
 
-    <div className="p-10 leading-8 text-lg mt-10 relative m-auto rouded-lg text-center">
+    <div className="p-10 leading-8 text-lg mt-10 relative m-auto rounded-lg text-center">
       <h1 className="text-4xl font-extrabold w-full text-center uppercase text-primary mb-10">
         Let's Discuss
       </h1>
@@ -61,6 +61,7 @@ const Contact = () => {
           />
         </div>
       </form>
+      <Map />
     </div>
   
   </div>
