@@ -38,3 +38,10 @@ export interface FormProps {
   className?: string;
   onSubmit?: (E: FormEvent<HTMLFormElement>) => void;
 }
+
+export interface InputProps {
+  name: string;
+  type: string;
+  placeholder?: string;
+  value?: string | number | readonly string[] | undefined;
+}
