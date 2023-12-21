@@ -2,6 +2,7 @@ import Hero from "@/components/ui/hero/Hero";
 import LatestsPosts from "@/components/ui/latests-posts/LatestsPosts";
 import TopPosts from "@/components/ui/top-posts/TopPosts";
 
+
 function Home() {
   return (
     <>
