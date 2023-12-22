@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { blogData } from "@/constants/blogData";
+import React, { useState } from "react";
 import BlogCard from "../blog-card/BlogCard";
 import Button from "../button/Button";
+import { PostTypes } from "@/types/postTypes";
 
-const LatestsPosts = () => {
-  const latestPosts = blogData.filter((blog) => blog.latestPost === true);
+const LatestsPosts: React.FC<{posts: PostTypes[]}> = ({posts}) => {
+const latestPosts = posts.sort(
+  (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+)
 
   const [visibleBlogs, setVisibleBlogs] = useState(5);
 
