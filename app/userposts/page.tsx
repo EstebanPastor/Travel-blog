@@ -17,8 +17,11 @@ const page = async () => {
     },
   });
   return (
-    <div className="w-full">
-      <div className="max-w-[90%] mx-auto">
+    <div className="w-full h-screen flex justify-center items-center">
+      {!user ? (
+        <h1 className="text-3xl font-extrabold">Sign in to view your posts!</h1>
+      ) : (
+        <div className="max-w-[90%] mx-auto">
         <div className="w-full text-center mb-10">
           <h1 className="text-3xl font-extrabold text-tertiary">
             Hello {user?.name}
@@ -35,7 +38,8 @@ const page = async () => {
             </div>
           ))}
         </div>
-      </div>
+      </div>)
+      }
     </div>
   );
 };
