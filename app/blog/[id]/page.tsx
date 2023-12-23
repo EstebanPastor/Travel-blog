@@ -1,5 +1,4 @@
 import Tag from "@/components/ui/tag/Tag";
-import { searchParamsTypes } from "@/interfaces/IShared";
 import Image from "next/image";
 import {
   AiOutlineTwitter,
@@ -7,19 +6,35 @@ import {
   AiOutlineFacebook,
 } from "react-icons/ai";
 
-const page = ({ searchParams }: { searchParams: searchParamsTypes }) => {
-  const post = searchParams;
+import { PostTypes } from "@/types/postTypes";
+import { formatDate } from "@/utils/formatDate";
+
+const getData = async (id: string) => {
+  const res = await fetch(`http:localhost:3000/api/post/${id}`, {
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new Error("something went wrong");
+  }
+  return await res.json();
+};
+
+const page = async ({ params }: { params: PostTypes }) => {
+  
+  const {id} = params;
+  const post = await getData(id);
+
   return (
     <div className="w-[95%] mx-auto max-w-[1450px]">
       <div className="w-full h-[400px] relative mb-5">
         <Image
-          src={post.image_path}
+          src={post.image}
           alt="image for blog post"
           fill
           className="object-cover"
         />
       </div>
-      <Tag text={post.tags} />
+      <Tag text={post.category} />
       <h2 className="text-4xl font-extrabold uppercase text-tertiary my-3">
         {post.title}
       </h2>
@@ -35,18 +50,18 @@ const page = ({ searchParams }: { searchParams: searchParamsTypes }) => {
           </div>
         </aside>
         <article>
-          <p className="text-xl">{post.paragraph}</p>
+          <p className="text-xl">{post.desc}</p>
           <div className="mt-5 flex gap-5 items-center">
             <Image
-              src={post.authorImage}
+              src={post.user.image}
               width={500}
               height={500}
               alt="author image"
               className="rounded-full w-20 h-20 object-cover"
             />
             <div className="flex gap-1 flex-col">
-              <span>{post.authorName}</span>
-              <span>{post.publishDate}</span>
+              <span>{post.user.name}</span>
+              <span>{formatDate(post.createdAt)}</span>
             </div>
           </div>
         </article>
