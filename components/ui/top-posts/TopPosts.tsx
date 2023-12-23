@@ -29,12 +29,12 @@ const TopPosts: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
           >
             <article key={index}>
               <div className="relative cursor-pointer">
-                <Image
+              { post.image && (<Image
                   src={post.image}
                   width={800}
                   height={800}
                   alt="Image for top posts"
-                />
+                />)}
 
                 <Overlay />
               </div>
@@ -47,7 +47,7 @@ const TopPosts: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
               </h3>
               <div className="flex gap-3 justify-center mt-2">
                 <span className="font-light">By: {post.user.name}</span>
-                <span className="italic font-light">{formatDate(post.createdAt)}</span>
+                <span className="italic font-light">{formatDate(post.createdAt).toString()}</span>
               </div>
             </article>
           </Link>

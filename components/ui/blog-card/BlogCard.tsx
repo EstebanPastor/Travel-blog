@@ -10,12 +10,13 @@ const BlogCard: React.FC<{ post: PostTypes }> = ({ post }) => {
   return (
     <article className="relative rounded-lg overflow-hidden">
       <div className="w-[1000px] h-[450px] relative">
-        <Image
+      { post.image && (
+         <Image
           src={post.image}
           fill
           alt="Image Path"
           className="object-cover"
-        />
+        />)}
         <Overlay />
       </div>
       <div className="absolute w-full h-full top-0 p-5 flex flex-col justify-between">

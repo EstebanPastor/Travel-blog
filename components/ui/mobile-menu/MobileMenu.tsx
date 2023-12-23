@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { CgMenuGridO, CgClose } from "react-icons/cg";
 import {
   FaSquareXTwitter,
@@ -15,8 +15,9 @@ import Route from "../route/Route";
 import useMenuActive from "@/hooks/useMenuActive";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
+import { MobileMenuProps } from "@/interfaces/IShared";
 
-const MobileMenu = ({ user }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ user }) => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   const mobileMenuHandler = () => {
@@ -25,15 +26,8 @@ const MobileMenu = ({ user }) => {
 
   return (
     <>
-   <div
-        className="md:hidden"
-        onClick={mobileMenuHandler}
-      >
-        {openMobileMenu ? (
-          <CgClose size={25} />
-        ) : (
-          <CgMenuGridO size={25} />
-        )}
+      <div className="md:hidden" onClick={mobileMenuHandler}>
+        {openMobileMenu ? <CgClose size={25} /> : <CgMenuGridO size={25} />}
       </div>
 
       {openMobileMenu ? (
@@ -71,9 +65,7 @@ const MobileMenu = ({ user }) => {
                       route={link.route}
                       label={link.label}
                       isActive={isActive}
-                      onClick={() =>
-                        setOpenMobileMenu(false)
-                      }
+                      onClick={() => setOpenMobileMenu(false)}
                     />
                   </li>
                 );
@@ -98,10 +90,7 @@ const MobileMenu = ({ user }) => {
             {user && (
               <div>
                 <ul className="flex flex-col  gap-5 items-center">
-                  <Link
-                    href="/create"
-                    onClick={() => setOpenMobileMenu(false)}
-                  >
+                  <Link href="/create" onClick={() => setOpenMobileMenu(false)}>
                     <li>Create a Post</li>
                   </Link>
                   <Link
@@ -111,9 +100,7 @@ const MobileMenu = ({ user }) => {
                     <li>My Post</li>
                   </Link>
 
-                  <li onClick={() => signOut()}>
-                    Sign Out
-                  </li>
+                  <li onClick={() => signOut()}>Sign Out</li>
                 </ul>
               </div>
             )}

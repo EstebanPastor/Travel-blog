@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import { FormEvent, ReactNode } from "react";
 
 export interface routeProps {
@@ -16,7 +17,7 @@ export interface buttonProps {
 }
 
 export interface TagProps {
-  text: string[];
+  text: string;
 }
 
 export interface searchParamsTypes {
@@ -44,4 +45,8 @@ export interface InputProps {
   type: string;
   placeholder?: string;
   value?: string | number | readonly string[] | undefined;
+}
+
+export interface MobileMenuProps {
+  user: User
 }

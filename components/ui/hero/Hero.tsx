@@ -18,7 +18,7 @@ const Hero: React.FC<{posts: PostTypes[]}> = ({posts}) => {
       <div className="w-[95%] mx-auto max-w-[1450px] z-1">
         {topFeatured.map((post, id) => (
           <article
-            key={id}
+          key={post.id}
             className="flex flex-col gap-5 mb-5 text-center relative"
           >
             <Tag text={post.category} />
@@ -38,36 +38,36 @@ const Hero: React.FC<{posts: PostTypes[]}> = ({posts}) => {
               )
              }
               <span>{post.user.name}</span>
-              <span className="italic">{formatDate(post.createdAt)}</span>
+              <span className="italic">{formatDate(post.createdAt.toString())}</span>
             </div>
             <Link
               className="w-full"
               href={`/blog/${post.id}`}
             >
               <div className="relative max-h-[650px] overflow-hidden shadow-xl">
-                <img
-                  src={post.image}
-                  alt="Image Path"
-                  className="object-cover w-full h-full"
-                />
+              {post.image && (<img
+                    src={post.image}
+                    alt="Image Path"
+                    className="object-cover w-full h-full"
+                  />)}
                 <Overlay />
               </div>
             </Link>
           </article>
         ))}
         <div className="grid grid-cols-3 gap-8 max-lg:grid-cols-1">
-          {bottomFeatured.map((post, id) => (
-            <article className="flex flex-col gap-3 items-center text-center relative">
+          {bottomFeatured.map((post) => (
+            <article key={post.id} className="flex flex-col gap-3 items-center text-center relative">
               <div className="relative overflow-hidden h-72 shadow-xl w-full">
                 <Link
                   className="w-full"
                   href={`/blog/${post.id}`}
                 >
-                  <img
-                    src={post.image_path}
+                  {post.image && (<img
+                    src={post.image}
                     alt="Image Path"
                     className="object-cover w-full h-full"
-                  />
+                  />)}
                   <Overlay />
                 </Link>
               </div>
@@ -75,7 +75,7 @@ const Hero: React.FC<{posts: PostTypes[]}> = ({posts}) => {
               <h3 className="text-sm font-extrabold uppercase text-tertiary px-5">
                 {post.title}
               </h3>
-              <span className="font-light italic">{formatDate(post.createdAt)}</span>
+              <span className="font-light italic">{formatDate(post.createdAt.toString())}</span>
             </article>
           ))}
         </div>
